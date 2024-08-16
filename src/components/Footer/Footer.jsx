@@ -22,7 +22,7 @@ const Footer = () => {
         <li>Legal notices</li>
         <li>Conttact us</li>
       </ul>
-      <p className='cp-text'>@ 1997-2023 Netflix,Inc.</p>
+      <p className='cp-text'>@ sheetal singh,Inc.</p>
     </div>
   )
 }
