@@ -13,14 +13,10 @@ const Footer = () => {
         <img src={twitter_icon} alt="" />
         <img src={youtube_icon} alt="" />
       </div>
-      <ul>
+      <ul> 
         <li>Audio Description</li>
         <li>help center</li>
-        <li>giftcards</li>
-        <li>jobs</li>
-        <li>terms of use</li>
-        <li>Legal notices</li>
-        <li>Conttact us</li>
+        <li>Contact us</li>
       </ul>
       <p className='cp-text'>@ sheetal singh,Inc.</p>
     </div>
