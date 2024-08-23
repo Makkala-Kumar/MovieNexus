@@ -18,7 +18,7 @@ const Footer = () => {
         <li>help center</li>
         <li>Contact us</li>
       </ul>
-      <p className='cp-text'>@ sheetal singh,Inc.</p>
+      <p className='cp-text'>@Movie Nexus</p>
     </div>
   )
 }

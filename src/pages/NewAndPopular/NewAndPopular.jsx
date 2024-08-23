@@ -5,7 +5,7 @@ import hero_banner from '../../assets/hero_banner.jpg';
 import hero_title from '../../assets/hero_title.png';
 import play_icon from '../../assets/play_icon.png';
 import info_icon from '../../assets/info_icon.png';
-import TitleCards from '../../components/TitleCards/TitleCards';
+import TitleCards from '../../components/Titlecards/TitleCards';
 import Footer from '../../components/Footer/Footer';
 
 const NewAndPopular = () => {
@@ -26,7 +26,7 @@ const NewAndPopular = () => {
       </div>
       <div className='more-cards'>
         <TitleCards title={"Trending Now"} category={"top_rated"} />
-        <TitleCards title={"New on Netflix"} category={"popular"} />
+        <TitleCards title={"New on Nexus"} category={"popular"} />
         <TitleCards title={"Just Released"} category={"upcoming"} />
         <TitleCards title={"Popular Picks"} category={"now_playing"} />
       </div>
