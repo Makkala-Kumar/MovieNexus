@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar/Navbar";
 
 const Movie = () => {
     const [currentMovieDetail, setMovie] = useState(null);
-    const [watchlist, setWatchlist] = useState([]);
     const [watchlistStatus, setWatchlistStatus] = useState(null);
     const { id } = useParams();
 
@@ -95,7 +94,7 @@ const Movie = () => {
                 </div>
             </div>
             <div className="movie__links">
-                <div className="movie__heading">Useful Links</div>
+                
                 {
                     currentMovieDetail && currentMovieDetail.homepage && <a href={currentMovieDetail.homepage} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
                 }

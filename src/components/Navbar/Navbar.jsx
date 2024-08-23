@@ -43,8 +43,8 @@ const Navbar = () => {
       </div>
       <div className='navbar-right'>
         <img src={search_icon} alt="Search Icon" className='icons' />
-        <p>Children</p>
-        <img src={bell_icon} alt="Bell Icon" className='icons' />
+       
+        
         <div className='navbar-profile'>
           <img src={profile_img} alt="Profile" className='profile' />
           <img src={caret_icon} alt="Caret Icon" className='icons' />
