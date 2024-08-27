@@ -32,8 +32,6 @@ useEffect(()=>{
 
   
 
-
-
   return (
     <div className='player'>
       <img src={back_arrow_icon} alt="" onClick={()=>{navigate(-2)}} />

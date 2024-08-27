@@ -79,7 +79,7 @@
 }
 
 .watch-now-btn {
-  background-color: #f3ce13;
+  background-color: #ffffff7c;
   border: none;
   padding: 15px 0;
   border-radius: 4px;
@@ -92,12 +92,12 @@
 }
 
 .watch-now-btn:hover {
-  background-color: #e0b92f;
+  background-color: white;
   transform: scale(1.05);
 }
 
 .add-to-watchlist-btn {
-  background-color: #ff6f61;
+  background-color: #6e6e6e2f;
   border: none;
   padding: 15px 0;
   border-radius: 4px;
@@ -110,7 +110,7 @@
 }
 
 .add-to-watchlist-btn:hover {
-  background-color: #e55d50;
+  background-color: #6e6e6e;
   transform: scale(1.05);
 }
 

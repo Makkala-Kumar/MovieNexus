@@ -96,7 +96,7 @@ const Movie = () => {
             <div className="movie__links">
                 
                 {
-                    currentMovieDetail && currentMovieDetail.homepage && <a href={currentMovieDetail.homepage} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
+                    currentMovieDetail && currentMovieDetail.homepage && <a href={currentMovieDetail.homepage} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button">Watch Here <i className="newTab fas fa-external-link-alt"></i></span></p></a>
                 }
                 {
                     watchlistStatus === null 
