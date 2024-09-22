@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import './Navbar.css';
 import logo from '../../assets/logo.png';
 import search_icon from '../../assets/search_icon.svg';
-import bell_icon from '../../assets/bell_icon.svg';
 import profile_img from '../../assets/profile_img.png';
 import caret_icon from '../../assets/caret_icon.svg';
 import { Link } from 'react-router-dom';
@@ -22,7 +21,6 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -38,18 +36,17 @@ const Navbar = () => {
           <li><Link to="/movies">Movies</Link></li>
           <li><Link to="/new">New & Popular</Link></li>  
           <li><Link to="/watchlist">Watchlist</Link></li>
-          <li>Browse by Language</li>
         </ul>
       </div>
       <div className='navbar-right'>
         <img src={search_icon} alt="Search Icon" className='icons' />
-       
         
         <div className='navbar-profile'>
           <img src={profile_img} alt="Profile" className='profile' />
           <img src={caret_icon} alt="Caret Icon" className='icons' />
           <div className='dropdown'>
-            <p onClick={()=>{logout()}}>Sign out of Netflix</p>
+            <p onClick={() => { logout() }}>Sign out</p>
+            <Link to="/user">User</Link>
           </div>
         </div>
       </div>

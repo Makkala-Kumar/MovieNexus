@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 
-const TitleCards = ({ title, category }) => {
+const TitleCards = ({ title, category, contentType = "movie" }) => {
   const [apiData, setApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,14 +19,11 @@ const TitleCards = ({ title, category }) => {
     },
   };
 
-  const handleWheel = (event) => {
-    event.preventDefault();
-    cardsRef.current.scrollLeft += event.deltaY;
-  };
-
   useEffect(() => {
+    const endpoint = contentType === "tv" ? "tv" : "movie"; // Switch between movie and tv
+
     fetch(
-      `https://api.themoviedb.org/3/movie/${category ? category : "now_playing"}?language=en-US&page=1`,
+      `https://api.themoviedb.org/3/${endpoint}/${category ? category : "now_playing"}?language=en-US&page=1`,
       options
     )
       .then((response) => response.json())
@@ -39,12 +36,15 @@ const TitleCards = ({ title, category }) => {
         setIsLoading(false); // Stop loading even if there's an error
       });
 
-    cardsRef.current.addEventListener("wheel", handleWheel);
-  }, [category]);
+    cardsRef.current.addEventListener("wheel", (event) => {
+      event.preventDefault();
+      cardsRef.current.scrollLeft += event.deltaY;
+    });
+  }, [category, contentType]);
 
   return (
     <div className="titlecards">
-      <h2>{title ? title : "Popular on Netflix"}</h2>
+      <h2>{title ? title : "Popular Content"}</h2>
       <div className="card-list" ref={cardsRef}>
         {isLoading
           ? Array.from({ length: 8 }).map((_, index) => (
@@ -56,19 +56,12 @@ const TitleCards = ({ title, category }) => {
               </div>
             ))
           : apiData.map((card, index) => (
-              // <Link to={`/player/${card.id}`} className="card" key={index}>
-              //   <img
-              //     src={`https://image.tmdb.org/t/p/w500` + card.backdrop_path}
-              //     alt={card.original_title}
-              //   />
-              //   <p>{card.original_title}</p> 
-              // </Link>
-              <Link to={`/movie/${card.id}`} className="card" key={index}>
+              <Link to={`/${contentType}/${card.id}`} className="card" key={index}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500` + card.backdrop_path}
-                  alt={card.original_title}
+                  alt={card.original_title || card.name} // Use appropriate title
                 />
-                <p>{card.original_title}</p>
+                <p>{card.original_title || card.name}</p> {/* Movie title or TV show name */}
               </Link>
             ))}
       </div>

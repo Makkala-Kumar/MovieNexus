@@ -1,0 +1,58 @@
+.user-page {
+    padding: 20px;
+    background-color: #121212;
+    color: #e5e5e5;
+    min-height: 100vh;
+}
+
+.user-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #1f1f1f;
+    border-radius: 8px;
+}
+
+.user-info p {
+    margin: 5px 0;
+}
+
+.watchlist-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #1f1f1f;
+    border-radius: 8px;
+}
+
+.watchlist-section h2 {
+    margin-bottom: 10px;
+}
+
+.watchlist-section button {
+    padding: 10px 15px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.watchlist-section button:hover {
+    background-color: #f40612; /* Darker red on hover */
+}
+
+.signout-section {
+    margin-top: 20px;
+}
+
+.signout-section button {
+    padding: 10px 15px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signout-section button:hover {
+    background-color: #f40612; /* Darker red on hover */
+}

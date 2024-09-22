@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Movie from './pages/Mdetail/Mdetail'
 import Watchlist from './pages/Watchlist/Watchlist'
+import UserPage from './pages/UserPage/UserPage'; 
 
 const App = () => {
 
@@ -43,6 +44,8 @@ useEffect(()=>{onAuthStateChanged(auth,async(user)=>{
         <Route path='/movies' element={<Movies/>}/>
         <Route path='/movie/:id' element={<Movie/>}/>
         <Route path="/watchlist" element={<Watchlist />} />
+        <Route path='/user' element={<UserPage />} /> 
+        <Route path="/tv/:id" element={<Movie  />} /> 
       </Routes>
       
       
