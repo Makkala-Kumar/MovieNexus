@@ -6,6 +6,13 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const UserPage = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [watchlistStats, setWatchlistStats] = useState({
+    watching: 0,
+    completed: 0,
+    dropped: 0,
+    planToWatch: 0,
+    allMovies: 0,
+  });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +40,18 @@ const UserPage = () => {
     };
 
     fetchUserInfo();
+
+    // Fetch the watchlist from localStorage and compute stats
+    const savedWatchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+    const watchlistStats = {
+      watching: savedWatchlist.filter(movie => movie.status === 'Watching').length,
+      completed: savedWatchlist.filter(movie => movie.status === 'Completed').length,
+      dropped: savedWatchlist.filter(movie => movie.status === 'Dropped').length,
+      planToWatch: savedWatchlist.filter(movie => movie.status === 'Plan to Watch').length,
+      allMovies: savedWatchlist.length,
+    };
+
+    setWatchlistStats(watchlistStats);
   }, [navigate]);
 
   const handleSignOut = async () => {
@@ -46,6 +65,27 @@ const UserPage = () => {
       <div className="user-info">
         <p><strong>Username:</strong> {userInfo.name ? userInfo.name : 'N/A'}</p>
         <p><strong>Email:</strong> {userInfo.email ? userInfo.email : 'N/A'}</p>
+      </div>
+
+      <div className="watchlist-stats">
+        <h2>Your Watchlist Summary</h2>
+        <div className="watchlist-grid">
+          <div className="watchlist-grid-item">
+            <strong>All Movies:</strong> {watchlistStats.allMovies}
+          </div>
+          <div className="watchlist-grid-item">
+            <strong>Watching:</strong> {watchlistStats.watching}
+          </div>
+          <div className="watchlist-grid-item">
+            <strong>Completed:</strong> {watchlistStats.completed}
+          </div>
+          <div className="watchlist-grid-item">
+            <strong>Dropped:</strong> {watchlistStats.dropped}
+          </div>
+          <div className="watchlist-grid-item">
+            <strong>Plan to Watch:</strong> {watchlistStats.planToWatch}
+          </div>
+        </div>
       </div>
 
       <div className="signout-section">
