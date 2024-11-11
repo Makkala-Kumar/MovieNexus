@@ -3,6 +3,7 @@
     background-color: #121212;
     color: #e5e5e5;
     min-height: 100vh;
+    margin-top: 90px;
 }
 
 .user-info {
@@ -40,6 +41,71 @@
     background-color: #f40612; /* Darker red on hover */
 }
 
+.watchlist {
+    padding: 20px;
+    color: white;
+    min-height: 100vh;
+    background-color: #121212; /* Dark background for better contrast */
+    margin-top: 20px; /* Adjust margin as necessary */
+}
+
+.watchlist h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem; /* Larger font size for better visibility */
+}
+
+.watchlist-categories {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.category-button {
+    background-color: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px; /* Slightly larger font size */
+    transition: background-color 0.3s ease;
+}
+
+.category-button.active {
+    background-color: #0056b3; /* Darker blue for active state */
+}
+
+.category-button:hover {
+    background-color: #0056b3; /* Consistent hover effect */
+}
+
+.watchlist-movies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.watchlist-movie {
+    flex: 0 1 200px;
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.watchlist-movie img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.watchlist-movie p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
 .signout-section {
     margin-top: 20px;
 }
@@ -50,7 +116,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer;    
 }
 
 .signout-section button:hover {

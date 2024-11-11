@@ -8,7 +8,7 @@ import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const [popularMovies, setPopularMovies] = useState([]);
+  const [teluguMovies, setTeluguMovies] = useState([]);
   const [genres, setGenres] = useState({});
   const [movieLogos, setMovieLogos] = useState({});
 
@@ -26,14 +26,25 @@ const Home = () => {
         setGenres(genreMap);
       });
 
-    // Fetching popular movies
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=en-US`)
+    // Fetching popular Telugu movies by original language 'te' (Telugu)
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=te&sort_by=popularity.desc`)
       .then(res => res.json())
       .then(data => {
-        setPopularMovies(data.results);
+        // Filter movies to include only those released and with backdrop/poster
+        const filteredMovies = data.results.filter(movie => {
+          const releaseDate = new Date(movie.release_date);
+          const today = new Date();
+          return (
+            releaseDate <= today && // Released
+            movie.backdrop_path && // Has backdrop
+            movie.poster_path // Has poster
+          );
+        });
+
+        setTeluguMovies(filteredMovies);
 
         // Fetching logos for each movie
-        data.results.forEach(movie => {
+        filteredMovies.forEach(movie => {
           fetch(`https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=${apiKey}`)
             .then(res => res.json())
             .then(imageData => {
@@ -77,20 +88,20 @@ const Home = () => {
           showStatus={false}
           className="carousel"
         >
-          {popularMovies.map((movie) => (
+          {teluguMovies.map((movie) => (
             <Link style={{ textDecoration: "none", color: "white" }} to={`/movie/${movie.id}`} key={movie.id}>
               <div className="posterImage">
-                <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} alt={movie.original_title} />
+                <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
                 <div className="posterImage__overlay">
                   <div className="posterImage__logo-title">
                     {movieLogos[movie.id] ? (
-                      <img 
-                        src={`https://image.tmdb.org/t/p/original${movieLogos[movie.id]}`} 
-                        alt={movie.original_title} 
-                        className="movie-logo" 
+                      <img
+                        src={`https://image.tmdb.org/t/p/original${movieLogos[movie.id]}`}
+                        alt={movie.title}
+                        className="movie-logo"
                       />
                     ) : null}
-                    <div className="posterImage__title">{movie.original_title}</div>
+                    <div className="posterImage__title">{movie.title}</div> {/* Using 'title' for English title */}
                   </div>
                   <div className="posterImage__genre">
                     {movie.genre_ids ? movie.genre_ids.map((id) => (
@@ -99,8 +110,8 @@ const Home = () => {
                   </div>
                   <div className="button-container">
                     <button className="watch-now-btn">Watch Now</button>
-                    <button 
-                      className="add-to-watchlist-btn" 
+                    <button
+                      className="add-to-watchlist-btn"
                       title="Add to Watchlist"
                       onClick={() => addToWatchlist(movie)}
                     >
@@ -118,6 +129,9 @@ const Home = () => {
         <TitleCards title={"Available only on Netflix"} category={"popular"} />
         <TitleCards title={"Upcoming"} category={"upcoming"} />
         <TitleCards title={"Top picks"} category={"now_playing"} />
+        <TitleCards title={"Hindi Movies"} language={"hi"} />
+        <TitleCards title={"Telugu Movies"} language={"te"} />
+        <TitleCards title={"Tamil Movies"} language={"ta"} />
       </div>
       <Footer />
     </div>

@@ -3,6 +3,7 @@ import './UserPage.css';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import Navbar from '../../components/Navbar/Navbar';
 
 const UserPage = () => {
   const [userInfo, setUserInfo] = useState({});
@@ -13,6 +14,8 @@ const UserPage = () => {
     planToWatch: 0,
     allMovies: 0,
   });
+  const [watchlist, setWatchlist] = useState([]); // Added watchlist state
+  const [selectedCategory, setSelectedCategory] = useState('All Movies');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const UserPage = () => {
       if (user) {
         // Fetching user data using email
         const userQuery = query(
-          collection(db, "user"),  // Collection path
+          collection(db, "user"),
           where("email", "==", user.email)
         );
 
@@ -52,6 +55,7 @@ const UserPage = () => {
     };
 
     setWatchlistStats(watchlistStats);
+    setWatchlist(savedWatchlist); // Set watchlist state
   }, [navigate]);
 
   const handleSignOut = async () => {
@@ -59,15 +63,24 @@ const UserPage = () => {
     navigate('/login');
   };
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredMovies = selectedCategory === 'All Movies' 
+      ? watchlist 
+      : watchlist.filter(movie => movie.status === selectedCategory);
+
   return (
     <div className="user-page">
+      <Navbar />
       <h1>User Information</h1>
       <div className="user-info">
         <p><strong>Username:</strong> {userInfo.name ? userInfo.name : 'N/A'}</p>
         <p><strong>Email:</strong> {userInfo.email ? userInfo.email : 'N/A'}</p>
       </div>
 
-      <div className="watchlist-stats">
+      <div className="watchlist-section">
         <h2>Your Watchlist Summary</h2>
         <div className="watchlist-grid">
           <div className="watchlist-grid-item">
@@ -85,6 +98,33 @@ const UserPage = () => {
           <div className="watchlist-grid-item">
             <strong>Plan to Watch:</strong> {watchlistStats.planToWatch}
           </div>
+        </div>
+      </div>
+
+      <div className="watchlist">
+        <h1>Your Watchlist</h1>
+        <div className="watchlist-categories">
+          <button className="category-button" onClick={() => handleCategoryChange('All Movies')}>All Movies</button>
+          <button className="category-button" onClick={() => handleCategoryChange('Watching')}>Watching</button>
+          <button className="category-button" onClick={() => handleCategoryChange('Completed')}>Completed</button>
+          <button className="category-button" onClick={() => handleCategoryChange('Dropped')}>Dropped</button>
+          <button className="category-button" onClick={() => handleCategoryChange('Plan to Watch')}>Plan to Watch</button>
+        </div>
+        <div className="watchlist-movies">
+          {filteredMovies.length > 0 ? (
+            filteredMovies.map(movie => (
+              <div 
+                key={movie.id} 
+                className="watchlist-movie" 
+                onClick={() => navigate(`/movie/${movie.id}`)} // Use navigate function for redirection
+              >
+                <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title} />
+                <p>{movie.title}</p>
+              </div>
+            ))
+          ) : (
+            <p>No movies in this category.</p>
+          )}
         </div>
       </div>
 

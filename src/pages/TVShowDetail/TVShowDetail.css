@@ -1,0 +1,128 @@
+/* TVShowDetail.css */
+
+.movie {
+    color: #fff;
+    background-color: #1c1c1c; /* Dark background for better contrast */
+    min-height: 100vh; /* Ensure full height for mobile views */
+}
+
+.movie__intro {
+    position: relative;
+}
+
+.movie__backdrop {
+    width: 100%;
+    height: 80vh; /* Increased height for the backdrop */
+    object-fit: cover;
+    filter: brightness(0.5); /* Darken backdrop for text contrast */
+}
+
+.movie__detail {
+    display: flex;
+    flex-direction: column; /* Change to column for smaller screens */
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Add shadow for depth */
+}
+
+.movie__detailLeft {
+    flex: 1;
+    margin-bottom: 20px; /* Space between poster and details on mobile */
+    display: flex; /* Flex for vertical alignment */
+    justify-content: center; /* Center poster horizontally */
+}
+
+.movie__posterBox {
+    position: relative;
+    width: 100%;
+    padding-top: 150%; /* Aspect ratio 2:3 for poster */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.movie__poster {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movie__detailRight {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie__name {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.movie__tagline {
+    font-size: 1.2rem;
+    color: #ccc; /* Lighter color for tagline */
+    margin-bottom: 15px;
+}
+
+.movie__genres {
+    margin-bottom: 15px;
+}
+
+.movie__genre {
+    display: inline-block;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.synopsisText {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.movie__overview {
+    line-height: 1.6; /* Improved readability */
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+    .movie__detail {
+        flex-direction: row; /* Horizontal layout for larger screens */
+    }
+    
+    .movie__detailLeft {
+        margin-right: 20px; /* Space between poster and details */
+        margin-bottom: 0; /* Remove bottom margin */
+    }
+    
+    .movie__name {
+        font-size: 2.5rem; /* Larger title on bigger screens */
+    }
+    
+    .movie__tagline {
+        font-size: 1.5rem; /* Larger tagline on bigger screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie__name {
+        font-size: 1.8rem; /* Smaller title on very small screens */
+    }
+    
+    .movie__tagline {
+        font-size: 1rem; /* Smaller tagline on very small screens */
+    }
+
+    .movie__backdrop {
+        height: 40vh; /* Smaller backdrop height on mobile */
+    }
+}

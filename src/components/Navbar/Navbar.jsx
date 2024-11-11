@@ -32,10 +32,10 @@ const Navbar = () => {
         <img src={logo} alt="Logo" />
         <ul>
           <li><Link to="/">Home</Link></li>
+          <li><Link to="/indian">Indian</Link></li>
+          <li><Link to="/global">Global</Link></li>  
           <li><Link to="/tvshows">TV Shows</Link></li>
-          <li><Link to="/movies">Movies</Link></li>
-          <li><Link to="/new">New & Popular</Link></li>  
-          <li><Link to="/watchlist">Watchlist</Link></li>
+          <li><Link to="/new">New & Popular</Link></li>
         </ul>
       </div>
       <div className='navbar-right'>

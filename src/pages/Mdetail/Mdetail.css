@@ -9,29 +9,32 @@
 
 .movie__intro {
     width: 90%;
+    overflow: hidden; /* Prevents overflow for smaller screens */
 }
 
 .movie__backdrop {
     width: 100%;
-    height: 700px;
+    height: 80vh; /* Make the backdrop taller */
     object-fit: cover;
-    object-position: 0 35%;
+    object-position: center; /* Center the image */
 }
 
 .movie__detail {
     align-items: center;
-    width: 80%;
+    width: 90%; /* Increased width for better visibility */
     display: flex;
+    flex-direction: row;
     position: relative;
-    bottom: 300px;
+    top: -150px; /* Bring the details up */
+    z-index: 1; /* Make sure it stays above the backdrop */
 }
 
 .movie__detailLeft {
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .movie__poster {
-    width: 300px;
+    width: 250px; /* Adjusted size for better fitting */
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 40px 6px;
 }
@@ -51,7 +54,7 @@
 
 .movie__name {
     font-weight: 600;
-    font-size: 3rem;
+    font-size: 2.5rem; /* Adjusted for smaller screens */
 }
 
 .movie__voteCount {
@@ -81,16 +84,14 @@
     position: relative;
     align-items: center;
 }
-.synopsisText > div:last-of-type {
-    margin-left: auto;
-}
 
 .movie__links {
     position: relative;
-    bottom: 280px;
+    top: -100px; /* Adjust to fit the layout better */
     display: flex;
     justify-content: space-between;
     width: 35%;
+    margin-bottom: 20px;
 }
 
 .movie__heading {
@@ -148,7 +149,7 @@
     padding: 10px;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: bold ;
+    font-weight: bold;
     color: black;
     font-size: 150%;
 }
@@ -158,7 +159,7 @@
     position: absolute;
     background-color: #6e6e6e;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 10px;
 }
@@ -189,4 +190,38 @@
     font-weight: bold;
 }
 
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .movie__detail {
+        flex-direction: column;
+        align-items: center;
+        top: -50px; /* Adjust for smaller screens */
+    }
+    
+    .movie__detailLeft {
+        margin-right: 0;
+        margin-bottom: 20px; /* Space between poster and details */
+    }
+    
+    .movie__poster {
+        width: 200px; /* Adjust poster size */
+    }
+    
+    .movie__detailRight {
+        width: 100%; /* Make details take full width */
+    }
 
+    .movie__links {
+        width: 100%; /* Make links take full width */
+        flex-direction: column; /* Stack buttons vertically */
+        align-items: center;
+    }
+
+    .movie__name {
+        font-size: 2rem; /* Smaller font for mobile */
+    }
+
+    .movie__heading {
+        font-size: 2rem; /* Adjust heading size */
+    }
+}
