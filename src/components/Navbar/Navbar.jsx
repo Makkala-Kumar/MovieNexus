@@ -36,6 +36,7 @@ const Navbar = () => {
           <li><Link to="/global">Global</Link></li>  
           <li><Link to="/tvshows">TV Shows</Link></li>
           <li><Link to="/new">New & Popular</Link></li>
+          <li><Link to="/new">Watchlist</Link></li>
         </ul>
       </div>
       <div className='navbar-right'>
